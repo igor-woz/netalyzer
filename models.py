@@ -75,7 +75,7 @@ class HostStats:
         return self.bytes_sent + self.bytes_recv
     
 @dataclass(slots=True)
-class CommunicationsStats:
+class ConvoStats:
     """
     traffic stats for communication between two hosts
     """
@@ -105,7 +105,7 @@ class CaptureStats:
     prot_distribution: dict[Protocol, int] = field(default_factory=dict)
     prot_bytes: dict[Protocol, int] = field(default_factory=dict)
     hosts: dict[str, HostStats] = field(default_factory=dict)
-    comms: dict[tuple[str, str], CommunicationsStats] = field(default_factory=dict)
+    convo: dict[tuple[str, str], ConvoStats] = field(default_factory=dict)
     bandwidth_samples: list[BandwidthSample] = field(default_factory=dict)
 
     @property
@@ -169,5 +169,5 @@ class ExportOpts:
     include_packets: bool = True
     include_stats: bool = True
     include_hosts: bool = True
-    include_comms: bool = True
+    include_convos: bool = True
     pretty_print: bool = True
