@@ -1,0 +1,7 @@
+[project]
+name = "NetAlyzer"
+version = "0.1.0"
+dependencies = []
+
+[project.scripts]
+mycommand = ""
