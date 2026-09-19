@@ -1,0 +1,14 @@
+[project]
+name = "netalyzer"
+version = "0.1.0"
+description = "netalyzer - a cli network traffic capture, analysis and visualization"
+requires-python = ">=3.14"
+dependencies = [
+    "typer>=0.21.1",
+    "rich>=14.3.2",
+    "scapy>=2.7.0",
+    "matplotlib>=3.10.8"   
+]
+
+[project.scripts]
+netalyzer = "src.main:app"

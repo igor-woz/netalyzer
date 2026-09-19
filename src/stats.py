@@ -61,7 +61,14 @@ class StatsCollector:
             self._prot_counts[packet.protocol] += 1
             self._prot_bytes[packet.protocol] += packet.size
 
-            self._
+            self._update_host(packet.src_ip, sent_bytes=packet.size)
+            self._update_host(packet.dest_ip, recv_bytes=packet.size)
+
+            self._update_convo(
+                packet.src_ip,
+                packet.dest_ip,
+                packet.size
+            )
         
     def _update_host(
         self, 

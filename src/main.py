@@ -31,7 +31,7 @@ from output import (
     print_top_talkers,
     print_warning
 )
-from statistics import StatsCollector
+from stats import StatsCollector
 from visualization import (
     create_bandwidth_chart,
     create_protocol_bar_chart,

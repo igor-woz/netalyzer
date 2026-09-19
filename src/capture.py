@@ -15,7 +15,7 @@ from scapy.sendrecv import AsyncSniffer
 from analyzer import extract_packet_info
 from constants import CaptureDefaults, NpcapPaths
 from models import CaptureConfig, CaptureStats, PacketInfo
-from statistics import StatsCollector
+from stats import StatsCollector
 
 if TYPE_CHECKING:
     from scapy.packet import Packet

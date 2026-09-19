@@ -62,7 +62,7 @@ def print_packet(packet: PacketInfo) -> None:
 
     console.print(
         f"[{color}]{packet.protocol.value:5}[/{color}] "
-        f"{packet.src_ip:15} -> {packet.dst_ip:15} "
+        f"{packet.src_ip:15} -> {packet.dest_ip:15} "
         f"{port_info:20} "
         f"[dim]{packet.size:6} bytes[/dim]"
     )
@@ -209,16 +209,16 @@ def format_duration(seconds: float) -> str:
     """
     format capture time in human-readable format
     """
-    if seconds < TimeConstants.SECONDS_PER_MINUTE:
+    if seconds < TimeConstants.SEC_PER_MIN:
         return f"{seconds:.1f}s"
     if seconds < TimeConstants.SECONDS_PER_HOUR:
-        minutes = int(seconds // TimeConstants.SECONDS_PER_MINUTE)
-        secs = seconds % TimeConstants.SECONDS_PER_MINUTE
+        minutes = int(seconds // TimeConstants.SEC_PER_MIN)
+        secs = seconds % TimeConstants.SEC_PER_MIN
         return f"{minutes}m {secs:.1f}s"
-    hours = int(seconds // TimeConstants.SECONDS_PER_HOUR)
+    hours = int(seconds // TimeConstants.SEC_PER_HR)
     minutes = int(
-        (seconds % TimeConstants.SECONDS_PER_HOUR) //
-        TimeConstants.SECONDS_PER_MINUTE
+        (seconds % TimeConstants.SEC_PER_HR) //
+        TimeConstants.SEC_PER_MIN
     )
     return f"{hours}h {minutes}m"
 
