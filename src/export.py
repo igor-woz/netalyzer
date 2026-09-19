@@ -53,13 +53,13 @@ def stats_to_dict(stats: CaptureStats) -> dict[str, Any]:
     ]
 
     return {
-        "start_time": stats.t_start,
-        "end_time": stats.t_end,
+        "t_start": stats.t_start,
+        "t_end": stats.t_end,
         "capture_time": stats.capture_time,
-        "total_packets": stats.packets_tot,
-        "total_bytes": stats.bytes_tot,
-        "average_bandwidth": stats.bandwidth_avg,
-        "protocol_distribution": prot_dist,
+        "packets_tot": stats.packets_tot,
+        "bytes_tot": stats.bytes_tot,
+        "bandwidth_avg": stats.bandwidth_avg,
+        "prot_dist": prot_dist,
         "protocol_bytes": prot_bytes,
         "hosts": hosts,
         "conversations": convos,
@@ -94,7 +94,7 @@ def export_to_json(
     if options is None:
         options = ExportOpts()
 
-    data: dict[str, any] = {}
+    data: dict[str, Any] = {}
 
     if options.include_stats:
         stats_dict = stats_to_dict(stats)
@@ -234,7 +234,7 @@ def load_from_json(filepath: Path) -> tuple[CaptureStats | None, list[PacketInfo
                     src_port=pkt_data.get("src_port"),
                     dest_port=pkt_data.get("dest_port"),
                     src_mac=pkt_data.get("src_mac"),
-                    dst_mac=pkt_data.get("dst_mac")
+                    dest_mac=pkt_data.get("dest_mac")
                 )
                 packets.append(packet)
             except (KeyError, ValueError):

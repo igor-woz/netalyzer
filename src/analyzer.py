@@ -58,7 +58,7 @@ def extract_packet_info(packet: Packet) -> PacketInfo | None:
     if packet.haslayer(Ether):
         ether_layer = packet[Ether]
         src_mac = ether_layer.src
-        dest_mac = dest_mac.dst
+        dest_mac = ether_layer.dst
 
     if packet.haslayer(IP):
         ip_layer = packet[IP]
