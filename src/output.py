@@ -39,7 +39,7 @@ def create_capture_progress() -> Progress:
         TextColumn("[progress.description]{task.description}"),
         BarColumn(),
         TaskProgressColumn(),
-        TimeElapsedColumn,
+        TimeElapsedColumn(),
         console=console,
         transient=True
     )
@@ -109,7 +109,7 @@ def print_top_talkers(stats: CaptureStats, limit: int = 10) -> None:
     for host in top_talkers:
         table.add_row(
             host.ip_addr,
-            f"{host.packets_sent:,}"
+            f"{host.packets_sent:,}",
             f"{host.packets_recv:,}",
             format_bytes(host.bytes_sent),
             format_bytes(host.bytes_recv),
@@ -193,7 +193,7 @@ def print_success(message: str) -> None:
     """
     print success message
     """
-    console.print(f"[green]Error:[/green] {message}")
+    console.print(f"[green]Success:[/green] {message}")
 
 def format_bytes(num_bytes: int | float) -> str:
     """
@@ -211,7 +211,7 @@ def format_duration(seconds: float) -> str:
     """
     if seconds < TimeConstants.SEC_PER_MIN:
         return f"{seconds:.1f}s"
-    if seconds < TimeConstants.SECONDS_PER_HOUR:
+    if seconds < TimeConstants.SEC_PER_HR:
         minutes = int(seconds // TimeConstants.SEC_PER_MIN)
         secs = seconds % TimeConstants.SEC_PER_MIN
         return f"{minutes}m {secs:.1f}s"

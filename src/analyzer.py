@@ -17,7 +17,7 @@ def identify_prot(packet: Packet) -> Protocol:
     identify the highest layer protocol in a packet
     """
     if packet.haslayer(DNS):
-        Protocol.DNS
+        return Protocol.DNS
 
     if packet.haslayer(TCP):
         tcp_layer = packet[TCP]
@@ -58,7 +58,7 @@ def extract_packet_info(packet: Packet) -> PacketInfo | None:
     if packet.haslayer(Ether):
         ether_layer = packet[Ether]
         src_mac = ether_layer.src
-        dest_mac = ether_layer.dst
+        dest_mac = dest_mac.dst
 
     if packet.haslayer(IP):
         ip_layer = packet[IP]
@@ -90,7 +90,8 @@ def extract_packet_info(packet: Packet) -> PacketInfo | None:
         size=size,
         src_port=src_port,
         dest_port=dest_port,
-        src_mac=src_mac
+        src_mac=src_mac,
+        dest_mac=dest_mac
     )
 
 def extract_dns_info(packet: Packet) -> dict[str, str | list[str]] | None:

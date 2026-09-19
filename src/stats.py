@@ -69,6 +69,8 @@ class StatsCollector:
                 packet.dest_ip,
                 packet.size
             )
+
+            self._check_bandwidth_sample(time.time())
         
     def _update_host(
         self, 
@@ -156,16 +158,16 @@ class StatsCollector:
         reset all stats to initial state
         """
         with self._lock:
-            self._start_time = 0.0
-            self._last_sample_time = 0.0
+            self._t_start = 0.0
+            self._t_last_sample = 0.0
             self._interval_bytes = 0
             self._interval_packets = 0
-            self._total_packets = 0
-            self._total_bytes = 0
-            self._protocol_counts = defaultdict(int)
-            self._protocol_bytes = defaultdict(int)
-            self._endpoints = {}
-            self._conversations = {}
+            self._packets_tot = 0
+            self._bytes_tot= 0
+            self._prot_counts = defaultdict(int)
+            self._prot_bytes = defaultdict(int)
+            self._hosts = {}
+            self._convos = {}
             self._bandwidth_samples = []
 
     @property

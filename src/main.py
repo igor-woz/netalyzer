@@ -384,7 +384,7 @@ def chart(
         out_dir = output_dir or Path()
         generated = generate_all_charts(stats, out_dir)
         for path in generated:
-            print_success("generated {path}")
+            print_success(f"generated {path}")
     else: 
         if not output:
             output = Path(f"{chart_type}.png")

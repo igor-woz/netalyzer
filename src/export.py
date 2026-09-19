@@ -123,13 +123,13 @@ def export_packets_csv(
     fieldnames = [
         "timestamp",
         "src_ip",
-        "dst_ip",
+        "dest_ip",
         "protocol",
         "size",
         "src_port",
-        "dst_port",
+        "dest_port",
         "src_mac",
-        "dst_mac",
+        "dest_mac",
     ]
     
     with filepath.open("w", newline="", encoding="utf-8") as f:
@@ -208,10 +208,10 @@ def load_from_json(filepath: Path) -> tuple[CaptureStats | None, list[PacketInfo
     if "statistics" in data:
         stats_data = data["statistics"]
         stats = CaptureStats(
-            start_time=stats_data.get("start_time", 0.0),
-            end_time=stats_data.get("end_time", 0.0),
-            total_packets=stats_data.get("total_packets", 0),
-            total_bytes=stats_data.get("total_bytes", 0)
+            t_start=stats_data.get("t_start", 0.0),
+            t_end=stats_data.get("t_end", 0.0),
+            packets_tot=stats_data.get("packets_tot", 0),
+            bytes_tot=stats_data.get("bytes_tot", 0)
         )
 
         for prot_name, count in stats_data.get("protocol_distribution", {}).items():

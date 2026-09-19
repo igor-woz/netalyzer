@@ -106,7 +106,7 @@ class CaptureStats:
     prot_bytes: dict[Protocol, int] = field(default_factory=dict)
     hosts: dict[str, HostStats] = field(default_factory=dict)
     convo: dict[tuple[str, str], ConvoStats] = field(default_factory=dict)
-    bandwidth_samples: list[BandwidthSample] = field(default_factory=dict)
+    bandwidth_samples: list[BandwidthSample] = field(default_factory=list)
 
     @property
     def capture_time(self) -> float:

@@ -84,7 +84,7 @@ class FilterBuilder:
         filter by port number (src or dest)
         """
         _validate_port(port_number)
-        self._expressions.append(f"port: {port_number}")
+        self._expressions.append(f"port {port_number}")
         return self
     
     def src_port(self, port_number: int) -> Self:
@@ -92,7 +92,7 @@ class FilterBuilder:
         filter by src port
         """
         _validate_port(port_number)
-        self._expressions.append(f"src port: {port_number}")
+        self._expressions.append(f"src port {port_number}")
         return self
     
     def dest_port(self, port_number: int) -> Self:
@@ -100,7 +100,7 @@ class FilterBuilder:
         filter by dest port
         """
         _validate_port(port_number)
-        self._expressions.append(f"dest port: {port_number}")
+        self._expressions.append(f"dst port {port_number}")
         return self
     
     def host(self, ip_addr: str) -> Self:
@@ -108,7 +108,7 @@ class FilterBuilder:
         filter by IP address (src or dest)
         """
         _validate_ip_addr(ip_addr)
-        self._expressions.append(f"host: {ip_addr}")
+        self._expressions.append(f"host {ip_addr}")
         return self
     
     def src_host(self, ip_addr: str) -> Self:
@@ -116,7 +116,7 @@ class FilterBuilder:
         filter by src IP address
         """
         _validate_ip_addr(ip_addr)
-        self._expressions.append(f"src host: {ip_addr}")
+        self._expressions.append(f"src host {ip_addr}")
         return self
     
     def dest_host(self, ip_addr: str) -> Self:
@@ -124,7 +124,7 @@ class FilterBuilder:
         filter by dest IP address
         """
         _validate_ip_addr(ip_addr)
-        self._expressions.append(f"dest host: {ip_addr}")
+        self._expressions.append(f"dst host {ip_addr}")
         return self
     
     def network(self, network: str) -> Self:
@@ -132,7 +132,7 @@ class FilterBuilder:
         filter by network (CIDR notation)
         """
         _validate_network(network)
-        self._expressions.append(f"network: {network}")
+        self._expressions.append(f"net {network}")
         return self
     
     def port_range(self, start: int, end: int) -> Self:
@@ -143,7 +143,7 @@ class FilterBuilder:
         _validate_port(end)
         if start > end:
             raise ValidationError(f"Invalid port range: {start}-{end}")
-        self._expressions.append(f"port range: {start}-{end}")
+        self._expressions.append(f"portrange {start}-{end}")
         return self
     
     def not_port(self, port_number: int) -> Self:
@@ -151,7 +151,7 @@ class FilterBuilder:
         exclude traffic on specified port
         """
         _validate_port(port_number)
-        self._expressions.append(f"not port: {port_number}")
+        self._expressions.append(f"not port {port_number}")
         return self
     
     def not_host(self, ip_addr: str) -> Self:
@@ -159,7 +159,7 @@ class FilterBuilder:
         exclude traffic from/to specified host
         """
         _validate_ip_addr(ip_addr)
-        self._expressions.append(f"not host: {ip_addr}")
+        self._expressions.append(f"not host {ip_addr}")
         return self
     
     def raw(self, expression: str) -> Self:
@@ -203,7 +203,7 @@ def combine_filters(
     if len(valid_filters) == 1:
         return valid_filters[0]
     wrapped = [f"({f})" for f in valid_filters]
-    return f" {operator }".join(wrapped)
+    return f" {operator} ".join(wrapped)
     
 def validate_bpf_filter(filter_str: str ) -> bool:
     """
