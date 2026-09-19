@@ -187,8 +187,6 @@ python src/main.py chart traffic.pcap --type all -d ./charts/
 
 This project is a reimplementation of, and heavily inspired by, the **Python network traffic analyzer** in [CarterPerez-dev/Cybersecurity-Projects](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/main/PROJECTS/beginner/network-traffic-analyzer) by [Carter Perez](https://github.com/CarterPerez-dev). The overall architecture — the Scapy producer–consumer capture engine, the BPF filter builder, the Rich console output, and the Matplotlib chart export — follows that project's design. The code here was written by me while working through it, with my own module layout, data models, and naming.
 
-The upstream repository is licensed under the **GNU Affero General Public License v3.0**. Work derived from it carries the same license, so this repository is distributed under **AGPL-3.0** as well. Add a `LICENSE` file containing the AGPL-3.0 text before publishing or reusing this code.
-
 ## Disclaimer
 
 Packet capture may be restricted by law and by the acceptable-use policy of the network you are on. Only capture traffic on networks you own or have written permission to monitor.
